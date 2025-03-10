@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import os
 import shutil
 import sys
@@ -6,7 +7,7 @@ import sys
 if len(sys.argv) > 1:
     source_dir = sys.argv[1]  # Use the provided directory
 else:
-    source_dir = "/mnt/c/Users/enejo/Downloads"  # Default directory if none provided
+    source_dir = os.getcwd()  # Default directory if none provided
 
 # Verify the directory exists
 if not os.path.isdir(source_dir):
@@ -91,6 +92,9 @@ file_types = {
     ".torrent": "Torrents"
 }
 
+
+other_folder = "Others"
+
 # Create folders and move files
 for filename in os.listdir(source_dir):
     file_path = os.path.join(source_dir, filename)
@@ -102,6 +106,9 @@ for filename in os.listdir(source_dir):
             shutil.move(file_path, os.path.join(target_folder, filename))
             print(f"Moved {filename} to {file_types[extension]}")
         else:
-            print(f"Skipped {filename} - Unknown extension")
+            targetFolder = os.path.join(source_dir, other_folder)
+            os.makedirs(targetFolder, exist_ok = True)
+            shutil.move(file_path, os.path.join(targetFolder, filename))
+            print(f"Moved {filename} to {targetFolder}")
     else:
         print(f"Skipped {filename} - Not a file")
