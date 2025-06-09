@@ -60,32 +60,4 @@ class FileOrganizer(FileSystemEventHandler):
             new_path = os.path.join(target_dir, filename)
             if os.path.exists(new_path):
                 # Handle file name conflicts
-                base, ext = os.path.splitext(filename)
-                timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-                new_path = os.path.join(target_dir, f"{base}_{timestamp}{ext}")
-
-            try:
-                shutil.move(file_path, new_path)
-                log(f"Moved '{filename}' to '{folder}'")
-            except Exception as e:
-                log(f"Failed to move '{filename}': {e}")
-
-def main():
-    source_dir = os.getcwd()
-    log(f"Monitoring directory: {source_dir}")
-
-    event_handler = FileOrganizer(source_dir)
-    observer = Observer()
-    observer.schedule(event_handler, path=source_dir, recursive=False)
-    observer.start()
-
-    try:
-        while True:
-            time.sleep(5)
-    except KeyboardInterrupt:
-        observer.stop()
-    observer.join()
-
-if __name__ == "__main__":
-    main()
-
+    

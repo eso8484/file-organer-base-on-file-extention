@@ -33,7 +33,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV /home/ubuntu/file-organer-base-on-file-extention/esotest
+set -gx VIRTUAL_ENV /home/eso8484/file-organer-base-on-file-extention/esotest
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/"bin $PATH
